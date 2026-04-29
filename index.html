@@ -21,11 +21,16 @@
     <!-- Preload hero image original for instant loading -->
     <link rel="preload" href="./assets/landingPage/Flores-Hero.png" as="image">
     
-    <!-- Core refactored architecture -->
-    <link rel="stylesheet" href="./styles/design-system.css">
-    <link rel="stylesheet" href="./styles/integration.css">
+    <!-- Google Fonts for Ribbon Banner -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="./styles.css">
+    <!-- Core refactored architecture -->
+    <link rel="stylesheet" href="./styles/design-system.css?v=2">
+    <link rel="stylesheet" href="./styles/integration.css?v=2">
+
+    <link rel="stylesheet" href="./styles.css?v=ribbon2">
     <link rel="stylesheet" href="./components/ProductCard/ProductCard.css">
     <link rel="stylesheet" href="./components/ResponsiveImageLoader.css">
     <link rel="icon" href="./assets/landingPage/favicon.ico" type="image/x-icon">
@@ -73,7 +78,46 @@
         </nav>
     </header>
 
+    <!-- Ribbon Banner Section -->
+    <section class="ribbon-banner">
+        <!-- Decorative falling petals -->
+        <div class="ribbon-petal ribbon-petal-1"></div>
+        <div class="ribbon-petal ribbon-petal-2"></div>
+        <div class="ribbon-petal ribbon-petal-3"></div>
+        <div class="ribbon-petal ribbon-petal-4"></div>
+        <div class="ribbon-petal ribbon-petal-5"></div>
+        <div class="ribbon-petal ribbon-petal-6"></div>
+        <div class="ribbon-petal ribbon-petal-7"></div>
+        <div class="ribbon-petal ribbon-petal-8"></div>
+        <div class="ribbon-petal ribbon-petal-9"></div>
+        <div class="ribbon-petal ribbon-petal-10"></div>
+        <div class="ribbon-petal ribbon-petal-11"></div>
+        <div class="ribbon-petal ribbon-petal-12"></div>
+        
+        <div class="ribbon-container">
+            <div class="ribbon-content">
+                <div class="ribbon-text-content">
+                    <p class="ribbon-script">el color de tus sentimientos</p>
+                    <h2 class="ribbon-title">DÍA DE LAS MADRES</h2>
+                    <a class="ribbon-button" href="https://wa.me/523335558928?text=Hola,%20quiero%20reservar%20un%20ramo%20para%20el%20Día%20de%20las%20Madres." target="_blank" rel="noopener">
+                        <span>Reservar Ahora</span>
+                    </a>
+                    <div class="ribbon-reservations-info">
+                        <span>Reservaciones abiertas hasta el <strong>6 de mayo</strong></span>
+                    </div>
+                </div>
+                <div class="ribbon-image-content">
+                    <img src="./assets/landingPage/Bouquet.png" 
+                         alt="Hermoso ramo de dalias y flores frescas" 
+                         class="ribbon-bouquet-image"
+                         loading="eager">
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Hero Section -->
+    <!--
     <section class="hero" id="home">
         <div class="hero-overlay"></div>
         <div class="petals-background"></div>
@@ -99,6 +143,7 @@
             </div>
         </div>
     </section>
+    -->
 
     <!-- Products Section-->
     <section class="products-section" id="productos">
