@@ -589,6 +589,34 @@ section {
   }
 }
 
+/* Mobile petal animation - starts from higher up */
+@keyframes ribbonFallMobile {
+  0% {
+    top: -100px;
+    transform: translateX(0) rotate(0deg);
+    opacity: 0.7;
+  }
+  20% {
+    opacity: 0.8;
+    transform: translateX(15px) rotate(90deg);
+  }
+  40% {
+    transform: translateX(-15px) rotate(180deg);
+  }
+  60% {
+    transform: translateX(20px) rotate(270deg);
+  }
+  80% {
+    opacity: 0.6;
+    transform: translateX(-10px) rotate(360deg);
+  }
+  100% {
+    top: calc(100% + 50px);
+    transform: translateX(0) rotate(450deg);
+    opacity: 0;
+  }
+}
+
 /* Ribbon base styles */
 .ribbon-reservations-info {
   margin-top: 16px;
@@ -705,29 +733,138 @@ section {
 }
 
 /* =============================================
-   RIBBON BANNER - MOBILE OVERRIDES
-   MUST stay after desktop rules to win cascade
-   Order (mobile): title → reservations info → CTA
+   RIBBON BANNER - FULLY RESPONSIVE MOBILE CONFIG
+   Optimized for all screen sizes with proper scaling
    ============================================= */
+
+/* TABLET (769px - 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .ribbon-banner {
+    height: 50vh;
+    min-height: 380px;
+  }
+
+  .ribbon-container {
+    padding: 0 30px;
+  }
+
+  .ribbon-content {
+    gap: 40px;
+  }
+
+  .ribbon-text-content {
+    flex: 0 0 55%;
+    padding-left: 20px;
+  }
+
+  .ribbon-script {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+  }
+
+  .ribbon-title {
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+  }
+
+  .ribbon-image-content {
+    flex: 0 0 60%;
+    margin-right: -200px;
+  }
+
+  .ribbon-bouquet-image {
+    min-height: 500px;
+  }
+}
+
+/* MOBILE LANDSCAPE & SMALL TABLET (769px and below) */
 @media (max-width: 768px) {
   .ribbon-banner {
-    height: 36vh;
-    min-height: 260px;
-    max-height: 360px;
+    height: 60vh;
+    min-height: 60vh;
+    max-height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 16px 0;
+    position: relative;
+  }
+
+  /* Mobile petals - half size and adjusted animation */
+  .ribbon-petal {
+    animation-name: ribbonFallMobile;
+  }
+
+  .ribbon-petal-1 {
+    width: 12.5px;
+    height: 12.5px;
+  }
+
+  .ribbon-petal-2 {
+    width: 19px;
+    height: 19px;
+  }
+
+  .ribbon-petal-3 {
+    width: 14px;
+    height: 14px;
+  }
+
+  .ribbon-petal-4 {
+    width: 16px;
+    height: 16px;
+  }
+
+  .ribbon-petal-5 {
+    width: 13px;
+    height: 13px;
+  }
+
+  .ribbon-petal-6 {
+    width: 17.5px;
+    height: 17.5px;
+  }
+
+  .ribbon-petal-7 {
+    width: 15px;
+    height: 15px;
+  }
+
+  .ribbon-petal-8 {
+    width: 14px;
+    height: 14px;
+  }
+
+  .ribbon-petal-9 {
+    width: 16.5px;
+    height: 16.5px;
+  }
+
+  .ribbon-petal-10 {
+    width: 13.5px;
+    height: 13.5px;
+  }
+
+  .ribbon-petal-11 {
+    width: 15.5px;
+    height: 15.5px;
+  }
+
+  .ribbon-petal-12 {
+    width: 18px;
+    height: 18px;
   }
 
   .ribbon-container {
     max-width: 100%;
-    height: 100%;
+    width: 100%;
+    height: auto;
     margin: 0;
-    padding: 16px 20px;
+    padding: 20px 16px;
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
+    position: relative;
+    z-index: 2;
   }
 
   .ribbon-content {
@@ -735,19 +872,45 @@ section {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0;
-    height: 100%;
+    gap: 20px;
+    height: auto;
     width: 100%;
     padding: 0;
     margin: 0;
   }
 
-  /* Flex column container for all text/cta children */
+  /* IMAGEN PRIMERO - Order 1 */
+  .ribbon-image-content {
+    display: flex !important;
+    flex: none;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0 auto 20px;
+    overflow: visible;
+    order: 1 !important;
+  }
+
+  .ribbon-bouquet-image {
+    display: block !important;
+    width: 100%;
+    height: auto;
+    max-width: 350px;
+    min-height: auto;
+    object-fit: contain;
+    object-position: center;
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.15));
+  }
+
+  /* TEXTO DESPUÉS - Order 2 */
   .ribbon-text-content {
     flex: none;
-    width: min(100%, 500px);
-    padding: 0 4px;
-    padding-left: 0;
+    width: 100%;
+    max-width: 520px;
+    padding: 0 16px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -755,107 +918,168 @@ section {
     text-align: center;
     justify-content: center;
     gap: 14px;
+    order: 2 !important;
   }
 
-  /* Reorder: title(1) → reservations(2) → CTA(3) */
+  /* Optimización de tamaños según mejores prácticas UX/UI mobile */
   .ribbon-script {
-    order: 0;
-    font-size: clamp(1.05rem, 4.2vw, 1.35rem);
+    font-size: clamp(2.2rem, 7.5vw, 2.8rem) !important;
     text-align: center;
     margin: 0;
+    line-height: 1.3;
+    color: #c98ea1;
   }
 
   .ribbon-title {
-    order: 1;
-    font-size: clamp(1.85rem, 7.2vw, 2.65rem);
+    font-size: clamp(2.2rem, 7vw, 2.8rem);
     text-align: center;
     margin: 0;
+    line-height: 1.15;
+    letter-spacing: 1px;
   }
 
   .ribbon-reservations-info {
-    order: 2;
-    margin: 0;
-    font-size: 0.85rem;
+    margin: 8px 0 0 0;
+    font-size: clamp(0.9rem, 3.5vw, 1rem);
     text-align: center;
+    padding: 0 8px;
+    line-height: 1.4;
   }
 
   .ribbon-button {
-    order: 3;
-    /* Organic mobile size — not full width */
     width: auto;
-    align-self: center;
-    padding: 12px 36px;
-    font-size: 1rem;
-    min-height: 44px;
+    padding: clamp(12px, 3.5vw, 15px) clamp(36px, 7vw, 48px);
+    font-size: clamp(1rem, 4vw, 1.15rem);
+    min-height: 48px;
     display: inline-flex;
-    box-shadow: 0 4px 14px rgba(138, 155, 122, 0.32);
+    align-self: center;
+    margin-top: 8px;
+    box-shadow: 0 4px 14px rgba(138, 155, 122, 0.3);
+    transition: all 0.25s ease;
+    border-radius: 50px;
   }
 
   .ribbon-button span {
-    font-size: 1rem;
+    font-size: clamp(1rem, 4vw, 1.15rem);
     font-weight: 700;
   }
 
-  .ribbon-image-content {
-    display: none;
-  }
-
-  .ribbon-bouquet-image {
-    display: none;
+  .ribbon-button:active {
+    transform: scale(0.97);
   }
 }
 
+/* SMALL MOBILE (480px and below) */
 @media (max-width: 480px) {
   .ribbon-banner {
-    height: 34vh;
-    min-height: 240px;
-    max-height: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 60vh;
+    min-height: 60vh;
+    max-height: 60vh;
+    padding: 14px 0;
   }
 
   .ribbon-container {
-    padding: 14px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 16px 12px;
   }
 
   .ribbon-content {
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* MANTENER ORDEN: Imagen arriba (1), Texto abajo (2) */
+  .ribbon-image-content {
+    order: 1 !important;
+    margin: 0 auto 16px;
+  }
+
+  .ribbon-bouquet-image {
+    max-width: 300px;
   }
 
   .ribbon-text-content {
-    width: 100%;
-    padding: 0;
-    padding-left: 0;
-    align-items: center;
-    text-align: center;
+    max-width: 100%;
     gap: 12px;
+    padding: 0 12px;
+    order: 2 !important;
   }
 
   .ribbon-script {
-    display: none;
+    font-size: clamp(2rem, 7vw, 2.5rem) !important;
   }
 
   .ribbon-title {
-    font-size: clamp(1.55rem, 7vw, 2.1rem);
+    font-size: clamp(2rem, 7vw, 2.6rem);
     margin: 0;
   }
 
   .ribbon-reservations-info {
-    font-size: 0.8rem;
-    margin: 0;
+    font-size: clamp(0.85rem, 3.2vw, 0.95rem);
+    margin: 6px 0 0 0;
   }
 
   .ribbon-button {
-    padding: 11px 32px;
+    padding: clamp(11px, 3vw, 13px) clamp(32px, 6vw, 40px);
+    font-size: clamp(0.95rem, 3.5vw, 1.05rem);
+    min-height: 46px;
+    margin-top: 6px;
+  }
+
+  .ribbon-button span {
+    font-size: clamp(0.95rem, 3.5vw, 1.05rem);
+  }
+}
+
+/* EXTRA SMALL MOBILE (320px - 380px) */
+@media (max-width: 380px) {
+  .ribbon-banner {
+    padding: 14px 0;
+  }
+
+  .ribbon-container {
+    padding: 14px 10px;
+  }
+
+  .ribbon-content {
+    gap: 14px;
+  }
+
+  /* MANTENER ORDEN: Imagen arriba (1), Texto abajo (2) */
+  .ribbon-image-content {
+    order: 1 !important;
+    margin: 0 auto 14px;
+  }
+
+  .ribbon-bouquet-image {
+    max-width: 260px;
+  }
+
+  .ribbon-text-content {
+    gap: 10px;
+    padding: 0 10px;
+    order: 2 !important;
+  }
+
+  .ribbon-script {
+    font-size: clamp(1.85rem, 6.5vw, 2.3rem) !important;
+  }
+
+  .ribbon-title {
+    font-size: clamp(1.85rem, 6.5vw, 2.3rem);
+    margin: 0;
+    letter-spacing: 0.5px;
+  }
+
+  .ribbon-reservations-info {
+    font-size: clamp(0.8rem, 3vw, 0.9rem);
+    margin: 4px 0 0 0;
+    line-height: 1.5;
+  }
+
+  .ribbon-button {
+    padding: 11px 28px;
+    font-size: 0.95rem;
     min-height: 44px;
-    width: auto;
-    align-self: center;
+    margin-top: 4px;
   }
 
   .ribbon-button span {
@@ -2687,6 +2911,7 @@ section {
   }
 
   .nav-menu {
+    display: none;
     position: absolute;
     top: 100%;
     left: 0;
@@ -2697,16 +2922,15 @@ section {
     padding: 0;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     border-radius: 0 0 16px 16px;
-    transform: translateY(-100%);
+    transform: translateY(-10px);
     opacity: 0;
-    visibility: hidden;
     transition: all 0.3s ease;
   }
 
   .nav-menu.active {
+    display: flex;
     transform: translateY(0);
     opacity: 1;
-    visibility: visible;
   }
 
   .nav-menu li {
